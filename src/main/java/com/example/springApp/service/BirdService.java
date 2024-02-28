@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BirdService {
@@ -23,5 +25,17 @@ public class BirdService {
 
     public List<Bird> getAllBirds() {
         return birdDao.getAllBirds();
+    }
+
+    public Optional<Bird> getBirdById(UUID id) {
+        return birdDao.getBirdById(id);
+    }
+
+    public int deleteBird(UUID id) {
+        return birdDao.deleteBird(id);
+    }
+
+    public int updateBird(Bird bird) {
+        return birdDao.updateBird(bird);
     }
 }
