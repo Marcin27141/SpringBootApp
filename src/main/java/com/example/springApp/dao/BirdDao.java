@@ -11,8 +11,8 @@ public interface BirdDao {
     Optional<Bird> getBirdById(UUID id);
     int insertBird(UUID id, Bird bird);
     default int insertBird(Bird bird) {
-        UUID id = UUID.randomUUID();
-        return insertBird(id, bird);
+        bird.setId(UUID.randomUUID());
+        return insertBird(bird.getId(), bird);
     }
     int deleteBird(UUID id);
     int updateBird(Bird bird);
