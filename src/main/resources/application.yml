@@ -1,0 +1,6 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/birdspostgresdb
+    username: postgres
+    password: P@ssw0rd
+    pool-size: 30
