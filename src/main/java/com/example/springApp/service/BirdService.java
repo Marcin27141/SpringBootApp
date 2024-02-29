@@ -15,7 +15,7 @@ public class BirdService {
     private final BirdDao birdDao;
 
     @Autowired
-    public BirdService(@Qualifier("inMemoryDao") BirdDao birdDao) {
+    public BirdService(@Qualifier("postgres") BirdDao birdDao) {
         this.birdDao = birdDao;
     }
 
