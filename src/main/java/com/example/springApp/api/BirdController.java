@@ -3,6 +3,8 @@ package com.example.springApp.api;
 import com.example.springApp.model.Bird;
 import com.example.springApp.service.BirdService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,11 @@ public class BirdController {
     @GetMapping
     public List<Bird> getAllBirds() {
         return birdService.getAllBirds();
+    }
+
+    @GetMapping(path = "chunk")
+    public Page<Bird> getBirdsPage(Pageable pageable) {
+        return birdService.getBirdsPage(pageable);
     }
 
     @GetMapping(path = "{id}")

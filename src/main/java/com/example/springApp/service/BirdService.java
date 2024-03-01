@@ -4,6 +4,8 @@ import com.example.springApp.dao.BirdDao;
 import com.example.springApp.model.Bird;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class BirdService {
     public List<Bird> getAllBirds() {
         return birdDao.getAllBirds();
     }
+
+    public Page<Bird> getBirdsPage(Pageable pageable) {
+        return birdDao.getBirdsPage(pageable);
+    }
+
 
     public Optional<Bird> getBirdById(UUID id) {
         return birdDao.getBirdById(id);

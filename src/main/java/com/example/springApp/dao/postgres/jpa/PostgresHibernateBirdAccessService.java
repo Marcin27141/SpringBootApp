@@ -4,6 +4,8 @@ import com.example.springApp.dao.BirdDao;
 import com.example.springApp.model.Bird;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +30,11 @@ public class PostgresHibernateBirdAccessService implements BirdDao {
     @Override
     public Optional<Bird> getBirdById(UUID id) {
         return birdRepository.findById(id).map(BirdEntity::ConvertToBird);
+    }
+
+    @Override
+    public Page<Bird> getBirdsPage(Pageable pageable) {
+        return birdRepository.findAll(pageable).map(BirdEntity::ConvertToBird);
     }
 
     @Override

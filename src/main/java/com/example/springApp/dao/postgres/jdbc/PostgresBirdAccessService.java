@@ -3,6 +3,8 @@ package com.example.springApp.dao.postgres.jdbc;
 import com.example.springApp.dao.BirdDao;
 import com.example.springApp.model.Bird;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +38,11 @@ public class PostgresBirdAccessService implements BirdDao {
         String query = "SELECT * FROM bird WHERE id = ?";
         List<Bird> birdList = jdbcTemplate.query(query, birdMapper, id);
         return birdList.isEmpty() ? Optional.empty() : Optional.of(birdList.get(0));
+    }
+
+    @Override
+    public Page<Bird> getBirdsPage(Pageable pageable) {
+        return Page.empty();
     }
 
     @Override

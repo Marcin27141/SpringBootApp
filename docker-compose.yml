@@ -1,0 +1,12 @@
+services:
+  database:
+    image: 'postgres:alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=P@ssw0rd'
+      - 'POSTGRES_DB=birdspostgresdb'
+    restart: 'always'
+    volumes:
+      - './init.sql:/docker-entrypoint-initdb.d/init.sql'

@@ -1,6 +1,8 @@
 package com.example.springApp.dao;
 
 import com.example.springApp.model.Bird;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -22,6 +24,11 @@ public class InMemoryBirdAccessService implements BirdDao {
         return birds.stream()
                 .filter(bird -> bird.getId().equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public Page<Bird> getBirdsPage(Pageable pageable) {
+        return Page.empty();
     }
 
     @Override
