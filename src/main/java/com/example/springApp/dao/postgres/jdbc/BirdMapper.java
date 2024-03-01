@@ -1,4 +1,4 @@
-package com.example.springApp.dao.postgres;
+package com.example.springApp.dao.postgres.jdbc;
 
 import com.example.springApp.model.Bird;
 import com.example.springApp.model.ConservationStatus;
@@ -33,8 +33,8 @@ public class BirdMapper implements RowMapper<Bird> {
                 rs.getString("latinname"),
                 continents,
                 rs.getInt("wingspancm"),
-                ConservationStatus.valueOf(rs.getString("conservationstatus")),
-                Diet.valueOf(rs.getString("diet")),
+                ConservationStatus.values()[rs.getInt("conservationstatus")],
+                Diet.values()[rs.getInt("diet")],
                 colors,
                 rs.getString("imagesrc")
         );
@@ -45,8 +45,8 @@ public class BirdMapper implements RowMapper<Bird> {
                 bird.getName(),
                 bird.getLatinName(),
                 bird.getWingspanCm(),
-                bird.getConservationStatus().name(),
-                bird.getDiet().name(),
+                bird.getConservationStatus().ordinal(),
+                bird.getDiet().ordinal(),
                 bird.getImageSrc()
         ));
     }

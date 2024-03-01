@@ -1,4 +1,4 @@
-package com.example.springApp.dao.postgres;
+package com.example.springApp.dao.postgres.jdbc;
 
 import com.example.springApp.model.Bird;
 import org.springframework.jdbc.core.JdbcTemplate;
