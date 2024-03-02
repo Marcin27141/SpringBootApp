@@ -15,6 +15,8 @@ public class Bird {
     private Diet diet;
     private List<String> colors;
     private String imageSrc;
+    private String article;
+    private String trivia;
 
     public Bird(
             @JsonProperty("id") UUID id,
@@ -25,7 +27,9 @@ public class Bird {
             @JsonProperty("conservationStatus") ConservationStatus conservationStatus,
             @JsonProperty("diet") Diet diet,
             @JsonProperty("colors") List<String> colors,
-            @JsonProperty("imageSrc") String imageSrc
+            @JsonProperty("imageSrc") String imageSrc,
+            @JsonProperty("trivia") String trivia,
+            @JsonProperty("article") String article
     ) {
         this.id = id;
         this.name = name;
@@ -36,6 +40,8 @@ public class Bird {
         this.diet = diet;
         this.colors = colors;
         this.imageSrc = imageSrc;
+        this.trivia = trivia;
+        this.article = article;
     }
 
     public UUID getId() {
@@ -76,5 +82,21 @@ public class Bird {
 
     public String getImageSrc() {
         return imageSrc;
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        this.article = article;
+    }
+
+    public String getTrivia() {
+        return trivia;
+    }
+
+    public void setTrivia(String trivia) {
+        this.trivia = trivia;
     }
 }

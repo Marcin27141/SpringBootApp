@@ -36,7 +36,9 @@ public class BirdMapper implements RowMapper<Bird> {
                 ConservationStatus.values()[rs.getInt("conservationstatus")],
                 Diet.values()[rs.getInt("diet")],
                 colors,
-                rs.getString("imagesrc")
+                rs.getString("imagesrc"),
+                rs.getString("trivia"),
+                rs.getString("article")
         );
     }
 
@@ -47,7 +49,9 @@ public class BirdMapper implements RowMapper<Bird> {
                 bird.getWingspanCm(),
                 bird.getConservationStatus().ordinal(),
                 bird.getDiet().ordinal(),
-                bird.getImageSrc()
+                bird.getImageSrc(),
+                bird.getTrivia(),
+                bird.getArticle()
         ));
     }
 }

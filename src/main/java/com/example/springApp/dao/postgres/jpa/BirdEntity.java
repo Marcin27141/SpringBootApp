@@ -20,6 +20,8 @@ public class BirdEntity {
     private ConservationStatus conservationstatus;
     private Diet diet;
     private String imagesrc;
+    private String trivia;
+    private String article;
 
     @ElementCollection
     @CollectionTable(
@@ -40,7 +42,7 @@ public class BirdEntity {
     public BirdEntity() {
     }
 
-    public BirdEntity(UUID id, String name, String latinname, int wingspancm, ConservationStatus conservationstatus, Diet diet, String imagesrc, List<String> colors, List<Continent> continents) {
+    public BirdEntity(UUID id, String name, String latinname, int wingspancm, ConservationStatus conservationstatus, Diet diet, String imagesrc, String trivia, String article, List<String> colors, List<Continent> continents) {
         this.id = id;
         this.name = name;
         this.latinname = latinname;
@@ -48,6 +50,8 @@ public class BirdEntity {
         this.conservationstatus = conservationstatus;
         this.diet = diet;
         this.imagesrc = imagesrc;
+        this.trivia = trivia;
+        this.article = article;
         this.colors = colors;
         this.continents = continents;
     }
@@ -62,7 +66,9 @@ public class BirdEntity {
                 conservationstatus,
                 diet,
                 colors,
-                imagesrc
+                imagesrc,
+                trivia,
+                article
         );
     }
 
@@ -75,6 +81,8 @@ public class BirdEntity {
                 bird.getConservationStatus(),
                 bird.getDiet(),
                 bird.getImageSrc(),
+                bird.getTrivia(),
+                bird.getArticle(),
                 bird.getColors(),
                 bird.getContinents()
         );
@@ -114,5 +122,21 @@ public class BirdEntity {
 
     public void setContinents(List<Continent> continents) {
         this.continents = continents;
+    }
+
+    public String getTrivia() {
+        return trivia;
+    }
+
+    public void setTrivia(String trivia) {
+        this.trivia = trivia;
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        this.article = article;
     }
 }

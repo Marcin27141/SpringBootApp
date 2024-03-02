@@ -75,6 +75,8 @@ public class PostgresHibernateBirdAccessService implements BirdDao {
         birdToUpdate.setDiet(bird.getDiet());
         birdToUpdate.setConservationstatus(bird.getConservationStatus());
         birdToUpdate.setImagesrc(bird.getImageSrc());
+        birdToUpdate.setTrivia(bird.getTrivia());
+        birdToUpdate.setArticle(bird.getArticle());
         birdToUpdate.setContinents(bird.getContinents());
         birdToUpdate.setColors(bird.getColors());
     }

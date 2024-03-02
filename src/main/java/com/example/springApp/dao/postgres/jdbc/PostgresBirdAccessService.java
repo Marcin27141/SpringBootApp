@@ -47,8 +47,8 @@ public class PostgresBirdAccessService implements BirdDao {
 
     @Override
     public int insertBird(UUID id, Bird bird) {
-        String birdInsertQuery = "INSERT INTO bird (id, name, latinname, wingspancm, conservationstatus, diet, imagesrc) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String birdInsertQuery = "INSERT INTO bird (id, name, latinname, wingspancm, conservationstatus, diet, imagesrc, trivia, article) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         var args = birdMapper.getBirdColumnsWithoutId(bird);
         args.add(0, id);
         jdbcTemplate.update(birdInsertQuery, args.toArray());
@@ -70,7 +70,7 @@ public class PostgresBirdAccessService implements BirdDao {
     @Override
     public int updateBird(Bird bird) {
         String birdUpdateQuery = "UPDATE bird SET name = ?, latinname = ?, wingspancm = ?, " +
-                "conservationStatus = ?, diet = ?, imageSrc = ? WHERE id = ?";
+                "conservationStatus = ?, diet = ?, imageSrc = ?, trivia = ?, article = ? WHERE id = ?";
         var args = birdMapper.getBirdColumnsWithoutId(bird);
         args.add(args.size(), bird.getId());
         int birdUpdateResult = jdbcTemplate.update(birdUpdateQuery, args.toArray());
