@@ -1,6 +1,9 @@
 package com.example.springApp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,12 +13,16 @@ public class Bird {
     private String name;
     private String latinName;
     private List<Continent> continents;
+    @Positive(message = "Wingspan must be a positive number")
     private int wingspanCm;
     private ConservationStatus conservationStatus;
     private Diet diet;
     private List<String> colors;
+    @URL(message = "Please provide a valid URL")
     private String imageSrc;
+    @URL(message = "Please provide a valid URL")
     private String article;
+    @Size(max = 1024, message = "Max length is 1024 characters")
     private String trivia;
 
     public Bird(
@@ -42,6 +49,9 @@ public class Bird {
         this.imageSrc = imageSrc;
         this.trivia = trivia;
         this.article = article;
+    }
+
+    public Bird() {
     }
 
     public UUID getId() {
@@ -86,6 +96,38 @@ public class Bird {
 
     public String getArticle() {
         return article;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
+    }
+
+    public void setContinents(List<Continent> continents) {
+        this.continents = continents;
+    }
+
+    public void setWingspanCm(int wingspanCm) {
+        this.wingspanCm = wingspanCm;
+    }
+
+    public void setConservationStatus(ConservationStatus conservationStatus) {
+        this.conservationStatus = conservationStatus;
+    }
+
+    public void setDiet(Diet diet) {
+        this.diet = diet;
+    }
+
+    public void setColors(List<String> colors) {
+        this.colors = colors;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
     }
 
     public void setArticle(String article) {

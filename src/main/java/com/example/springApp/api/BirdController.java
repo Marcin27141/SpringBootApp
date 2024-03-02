@@ -1,5 +1,6 @@
 package com.example.springApp.api;
 
+import com.example.springApp.model.Bird;
 import com.example.springApp.model.ConservationStatus;
 import com.example.springApp.model.Continent;
 import com.example.springApp.model.Diet;
@@ -7,9 +8,11 @@ import com.example.springApp.propertyEditors.ConservationPropertyEditor;
 import com.example.springApp.propertyEditors.ContinentPropertyEditor;
 import com.example.springApp.propertyEditors.DietPropertyEditor;
 import com.example.springApp.service.BirdService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,19 +60,17 @@ public class BirdController {
     }
 
     @GetMapping("create")
-    public String showCreateBird() {
+    public String showCreateBird(ModelMap model) {
+        model.put("bird", new Bird());
         return "create_bird";
     }
 
     @PostMapping("create")
-    public String createBird(
-            @RequestParam String name,
-            @RequestParam String latinName,
-            @RequestParam int wingspanCm,
-            @RequestParam Diet diet,
-            @RequestParam List<Continent> continents,
-            @RequestParam ConservationStatus conservationStatus
-            ) {
-        return "create_bird";
+    public String createBird(@Valid Bird bird, BindingResult result) {
+        if (result.hasErrors()) {
+            return "create_bird";
+        }
+        birdService.addBird(bird);
+        return "redirect:all";
     }
 }
