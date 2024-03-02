@@ -6,13 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@SessionAttributes("username")
 public class LoginController {
     private final AuthenticationService authService;
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -30,7 +28,7 @@ public class LoginController {
     @PostMapping("login")
     public String onPostLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
         if (authService.authenticate(username, password))
-            return "index";
+            return "redirect:/";
         else {
             logger.warn("Username {} failed to log in", username);
             model.put("loginFailed", "Username or password are incorrect");
