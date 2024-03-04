@@ -8,11 +8,13 @@ import com.example.springApp.propertyEditors.ConservationPropertyEditor;
 import com.example.springApp.propertyEditors.ContinentPropertyEditor;
 import com.example.springApp.propertyEditors.DietPropertyEditor;
 import com.example.springApp.service.BirdService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -45,7 +47,10 @@ public class BirdController {
         this.birdService = birdService;
     }
     @RequestMapping("/")
+
     public String index(ModelMap model) {
+        //session.setAttribute("username", getLoggedInUsername());
+        model.put("username", getLoggedInUsername());
         var birds = birdService.getAllBirds();
         if (!birds.isEmpty()) {
             var day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -85,5 +90,9 @@ public class BirdController {
         }
         birdService.addBird(bird);
         return "redirect:all";
+    }
+
+    private String getLoggedInUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
