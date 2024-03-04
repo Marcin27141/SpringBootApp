@@ -9,12 +9,7 @@
     <script src="/js/index.js"></script>
 </head>
 <body>
-<div class="navbar">
-    <a class="left" href="website1.html">Home</a>
-    <a class="left" href="about.html">About</a>
-    <a class="right" href="login.html">Login</a>
-    <a class="right" href="login.html">Register</a>
-</div>
+<%@ include file="common/navbar.jspf" %>
 <h1 class="welcome-message">Welcome on the bird encyclopedia webpage!</h1>
 <!--Container for bird descirption and photo-->
 <div>

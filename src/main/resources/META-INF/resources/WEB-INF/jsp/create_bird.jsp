@@ -11,12 +11,7 @@
     <link rel="stylesheet" href="css/create_bird.css">
 </head>
 <body>
-<div class="navbar">
-    <a class="left" href="website1.html">Home</a>
-    <a class="left" href="about.html">About</a>
-    <a class="right" href="login.html">Login</a>
-    <a class="right" href="login.html">Register</a>
-</div>
+<%@ include file="common/navbar.jspf" %>
 <h1 class="welcome-message">Create a bird</h1>
 <div class="form-container">
     <form:form method="post" modelAttribute="bird">

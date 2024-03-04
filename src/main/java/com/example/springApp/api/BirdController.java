@@ -9,7 +9,10 @@ import com.example.springApp.propertyEditors.ContinentPropertyEditor;
 import com.example.springApp.propertyEditors.DietPropertyEditor;
 import com.example.springApp.service.BirdService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @SessionAttributes("username")
@@ -57,6 +61,15 @@ public class BirdController {
         var birds = birdService.getAllBirds();
         model.addAttribute("birds", birds);
         return "all_birds";
+    }
+
+    @GetMapping("{id}")
+    public String getBirdById(@PathVariable("id") UUID id, ModelMap model) {
+        var bird = birdService.getBirdById(id);
+        if (bird.isEmpty())
+            return "redirect:/notfound";
+        model.addAttribute("bird", bird.get());
+        return "show_bird";
     }
 
     @GetMapping("create")

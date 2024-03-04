@@ -1,0 +1,8 @@
+<div class="navbar">
+    <a class="left" href="/">Home</a>
+    <a class="left" href="/">About</a>
+    <a class="left" href="/all">All birds</a>
+    <a class="left" href="/create">Create</a>
+    <a class="right" href="/login">Login</a>
+    <a class="right" href="/login">Register</a>
+</div>
