@@ -25,29 +25,17 @@
         <div class="extinction-div">
             <label>Conservation status:</label>
             <select th:field="*{conservationStatus}" required="required">
-                <option value="0">Least Concern</option>
-                <option value="1">Near threatened</option>
-                <option value="2">Vulnerable</option>
-                <option value="3">Endangered</option>
-                <option value="4">Critically Endangered</option>
-                <option value="5">Extinct</option>
+                <option th:each="status : ${T(com.example.springApp.model.ConservationStatus).values()}"
+                        th:value="${status.ordinal()}" th:text="${status.name()}"></option>
             </select>
         </div>
 
         <div class="continents-div">
             <label>Habitat:</label>
-            <select th:field="*{continents}" multiple="multiple" required="required">
-                <option value="0">Europe</option>
-                <option value="1">Asia</option>
-                <option value="2">Africa</option>
-                <option value="3">North America</option>
-                <option value="4">South America</option>
-                <option value="5">Australia</option>
-                <option value="6">Antarctica</option>
+            <select th:field="*{continents}" required="required" multiple>
+                <option th:each="continent : ${T(com.example.springApp.model.Continent).values()}"
+                        th:value="${continent}" th:text="${continent.name()}"></option>
             </select>
-<!--            <select th:field="*{continents}" multiple="multiple" required="required">-->
-<!--                <option th:each="continent : ${continents}" th:value="${continent.value}" th:text="${continent.label}"></option>-->
-<!--            </select>-->
         </div>
 
         <div class="colors-div">
@@ -68,17 +56,8 @@
         <div>
             <label>Diet:</label>
             <div class="radio-group">
-                <input type="radio" th:field="*{diet}" id="0" value="0" checked="checked"/>
-                <label for="0">Herbivorous</label>
-
-                <input type="radio" th:field="*{diet}" id="1" value="1"/>
-                <label for="1">Carnivorous</label>
-
-                <input type="radio" th:field="*{diet}" id="2" value="2"/>
-                <label for="2">Scavenger</label>
-
-                <input type="radio" th:field="*{diet}" id="3" value="3"/>
-                <label for="3">Omnivorous</label>
+                <input type="radio" th:each="diet : ${T(com.example.springApp.model.Diet).values()}"
+                        th:value="${diet.ordinal()}" th:text="${diet.name()}" th:field="*{diet}" name="diet">
             </div>
         </div>
 
