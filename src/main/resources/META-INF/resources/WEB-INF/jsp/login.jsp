@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +11,13 @@
 <body>
     <div class="body-container" id="body-container">
         <div class="form-container log-in-container">
-            <form method="post">
+            <form:form name="f" action="@{/login}" method="post">
                 <h1>Log in</h1>
-                <input type="text" placeholder="Username" name="username">
-                <input type="password" placeholder="Password" name="password">
-                <span class="errorMsg">${loginFailed}</span>
+                <input type="text" placeholder="Username" id="username" name="username">
+                <input type="password" placeholder="Password" id="password" name="password">
                 <a href="#">Forgot your password?</a>
                 <button type="submit">Log in</button>
-            </form>
+            </form:form>
         </div>
         <div class="form-container sign-up-container">
             <form method="post">

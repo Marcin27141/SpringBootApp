@@ -25,14 +25,14 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("login")
-    public String onPostLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
-        if (authService.authenticate(username, password))
-            return "redirect:/";
-        else {
-            logger.warn("Username {} failed to log in", username);
-            model.put("loginFailed", "Username or password are incorrect");
-            return "login";
-        }
-    }
+//    @PostMapping("login")
+//    public String onPostLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
+//        if (authService.authenticate(username, password))
+//            return "redirect:/";
+//        else {
+//            logger.warn("Username {} failed to log in", username);
+//            model.put("loginFailed", "Username or password are incorrect");
+//            return "login";
+//        }
+//    }
 }
