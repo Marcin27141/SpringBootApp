@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds page</title>
+    <link rel="stylesheet" href="css/general_styling.css">
+    <link rel="stylesheet" href="css/index_styling.css">
+    <script src="/js/index.js"></script>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<!--Container for bird descirption and photo-->
+<div>
+    <h2 th:text="${bird.name}"></h2>
+    <a target="_blank"  class="article_href" th:href="${bird.article}">
+        <img th:alt="${bird.name}" class="bird-image" width="450" height="300"
+             th:src="${bird.imageSrc}">
+    </a>
+    <div class="bird-description">
+        <h4>Latin name: <span th:text="${bird.latinName}"></span></h4>
+        <h4>Wingspan: <span th:text="${bird.wingspanCm}"></span></h4>
+        <h4>Diet: <span th:text="${bird.diet}"></span></h4>
+        <h4>Habitat: <span th:text="${bird.continents}"></span></h4>
+        <h4>Conservation status: <span th:text="${bird.conservationStatus}"></span></h4>
+        <h4>Dominant colors: <span th:text="${bird.colors}"></span></h4>
+        <p th:text="${bird.trivia}"></p>
+    </div>
+</div>
+</body>
+</html>

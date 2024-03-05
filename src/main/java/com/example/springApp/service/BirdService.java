@@ -22,7 +22,7 @@ public class BirdService {
     }
 
     public int addBird(Bird bird) {
-        if (bird.getImageSrc() == null)
+        if (bird.getImageSrc() == null || bird.getImageSrc().isEmpty())
             bird.setImageSrc("/images/no_photo.jpg");
         return birdDao.insertBird(bird);
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/general_styling.css">
+    <link rel="stylesheet" href="/css/all_birds_styling.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="main-container" id="main-container">
+    <div class="header">
+        <h1 class="welcome-message">Most interesting birds out there</h1>
+        <h6 class="clarification-message">(In my humble opinion)</h6>
+    </div>
+
+    <div class="bird-cards">
+        <div th:each="bird : ${birds}">
+            <a th:href="@{'/' + ${bird.id}}" style="text-decoration: none; color: inherit; text-transform: none">
+                <div class="birdbox left">
+                    <img th:src="${bird.imageSrc}" th:alt="${bird.name}" style="width:100%">
+                    <div class="birdbox-content">
+                        <h4 class="name" th:text="${bird.name}"></h4>
+                        <p class="name latinName" th:text="${bird.latinName}"></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

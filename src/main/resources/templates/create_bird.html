@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birds page</title>
+    <link rel="stylesheet" href="css/general_styling.css">
+    <link rel="stylesheet" href="css/create_bird.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1 class="welcome-message">Create a bird</h1>
+<div class="form-container">
+    <form method="post" th:object="${bird}">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required="required"/>
+
+        <label>Latin name:</label>
+        <input type="text" th:field="*{latinName}" required="required"/>
+
+        <label>Wingspan in cm:</label>
+        <input type="number" th:field="*{wingspanCm}" required="required"/>
+        <div th:if="${#fields.hasErrors('wingspanCm')}" th:errors="*{wingspanCm}"></div>
+
+        <div class="extinction-div">
+            <label>Conservation status:</label>
+            <select th:field="*{conservationStatus}" required="required">
+                <option value="0">Least Concern</option>
+                <option value="1">Near threatened</option>
+                <option value="2">Vulnerable</option>
+                <option value="3">Endangered</option>
+                <option value="4">Critically Endangered</option>
+                <option value="5">Extinct</option>
+            </select>
+        </div>
+
+        <div class="continents-div">
+            <label>Habitat:</label>
+            <select th:field="*{continents}" multiple="multiple" required="required">
+                <option value="0">Europe</option>
+                <option value="1">Asia</option>
+                <option value="2">Africa</option>
+                <option value="3">North America</option>
+                <option value="4">South America</option>
+                <option value="5">Australia</option>
+                <option value="6">Antarctica</option>
+            </select>
+<!--            <select th:field="*{continents}" multiple="multiple" required="required">-->
+<!--                <option th:each="continent : ${continents}" th:value="${continent.value}" th:text="${continent.label}"></option>-->
+<!--            </select>-->
+        </div>
+
+        <div class="colors-div">
+            <label>Colors:</label>
+            <select th:field="*{colors}" multiple="multiple" required="required">
+                <option th:value="Black">Black</option>
+                <option th:value="White">White</option>
+                <option th:value="Red">Red</option>
+                <option th:value="Green">Green</option>
+                <option th:value="Blue">Blue</option>
+                <option th:value="Yellow">Yellow</option>
+                <option th:value="Grey">Grey</option>
+                <option th:value="Brown">Brown</option>
+            </select>
+        </div>
+
+
+        <div>
+            <label>Diet:</label>
+            <div class="radio-group">
+                <input type="radio" th:field="*{diet}" id="0" value="0" checked="checked"/>
+                <label for="0">Herbivorous</label>
+
+                <input type="radio" th:field="*{diet}" id="1" value="1"/>
+                <label for="1">Carnivorous</label>
+
+                <input type="radio" th:field="*{diet}" id="2" value="2"/>
+                <label for="2">Scavenger</label>
+
+                <input type="radio" th:field="*{diet}" id="3" value="3"/>
+                <label for="3">Omnivorous</label>
+            </div>
+        </div>
+
+        <label>Photo URL:</label>
+        <input type="text" th:field="*{imageSrc}"/>
+        <div th:if="${#fields.hasErrors('imageSrc')}" th:errors="*{imageSrc}"></div>
+
+
+        <label>Article URL:</label>
+        <input type="text" th:field="*{article}"/>
+        <div th:if="${#fields.hasErrors('article')}" th:errors="*{article}"></div>
+
+
+        <label>Trivia:</label>
+        <textarea th:field="*{trivia}" rows="8" cols="50">
+            Enter your trivia.
+        </textarea>
+        <div th:if="${#fields.hasErrors('trivia')}" th:errors="*{trivia}"></div>
+
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

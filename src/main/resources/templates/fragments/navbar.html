@@ -1,0 +1,18 @@
+<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
+<!--<c:set var="username" value="${sessionScope.username}" />-->
+<!--<div class="navbar">-->
+<!--    <a class="left" href="/">Home</a>-->
+<!--    <a class="left" href="/">About</a>-->
+<!--    <a class="left" href="/all">All birds</a>-->
+<!--    <a class="left" href="/create">Create</a>-->
+<!--    <a class="right" href="/logout">Logout</a>-->
+<!--    <a class="right" href="#">Hello, ${username}!</a>-->
+<!--</div>-->
+<div th:fragment="navbar" class="navbar">
+    <a class="left" th:href="@{/}">Home</a>
+    <a class="left" th:href="@{/about}">About</a>
+    <a class="left" th:href="@{/all}">All birds</a>
+    <a class="left" th:href="@{/create}">Create</a>
+    <a class="right" th:href="@{/logout}">Logout</a>
+<!--    <a class="right" href="#">Hello, <span th:text="${#session.getAttribute('username')}">Guest</span>!</a>-->
+</div>
