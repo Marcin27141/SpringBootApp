@@ -1,5 +1,7 @@
 package com.example.springApp.api;
 
+import com.example.springApp.exceptions.EmailTakenException;
+import com.example.springApp.exceptions.UsernameTakenException;
 import com.example.springApp.model.Bird;
 import com.example.springApp.model.RegistrationUser;
 import com.example.springApp.service.AuthenticationService;
@@ -40,21 +42,12 @@ public class LoginController {
         }
         try {
             registrationService.register(user);
-        }catch (IllegalStateException e){
+        }catch (EmailTakenException e){
             bindingResult.rejectValue("email", "userData.email","An account already exists for this email.");
+        }catch (UsernameTakenException e){
+            bindingResult.rejectValue("username", "userData.username","An account already exists for this username.");
         }
 
         return "login";
     }
-
-//    @PostMapping("login")
-//    public String onPostLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
-//        if (authService.authenticate(username, password))
-//            return "redirect:/";
-//        else {
-//            logger.warn("Username {} failed to log in", username);
-//            model.put("loginFailed", "Username or password are incorrect");
-//            return "login";
-//        }
-//    }
 }

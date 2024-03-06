@@ -92,12 +92,6 @@ public class BirdController {
         return "redirect:all";
     }
 
-//    @PostMapping( path = "/test")
-//    public String test() {
-//        birdService.addBird(new Bird());
-//        return "redirect:all";
-//    }
-
     private String getLoggedInUsername() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
