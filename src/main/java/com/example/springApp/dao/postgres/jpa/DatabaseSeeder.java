@@ -3,16 +3,20 @@ package com.example.springApp.dao.postgres.jpa;
 import com.example.springApp.model.ConservationStatus;
 import com.example.springApp.model.Continent;
 import com.example.springApp.model.Diet;
+import com.example.springApp.model.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Configuration
 public class DatabaseSeeder {
+
     @Bean
     CommandLineRunner commandLineRunner(BirdRepository birdRepository){
         return args -> {
@@ -160,6 +164,19 @@ public class DatabaseSeeder {
                                 new ArrayList<>(List.of("Blue", "Yellow", "Green", "Orange")),
                                 new ArrayList<>(List.of(Continent.AUSTRALIA))
                         )
+                ));
+            }
+        };
+    }
+
+    @Bean
+    CommandLineRunner userCommandLineRunner(PasswordEncoder encoder, UserRepository userRepository){
+        return args -> {
+            if (userRepository.findAll().isEmpty()) {
+                Random random = new Random();
+                var user = new User(random.nextLong(), "admin", "admin@admin.pl", encoder.encode("P@ssw0rd"));
+                userRepository.saveAll(List.of(
+                        user
                 ));
             }
         };

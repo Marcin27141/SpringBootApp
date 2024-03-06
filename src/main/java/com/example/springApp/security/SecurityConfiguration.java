@@ -50,7 +50,7 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests((authz) -> authz
-                .requestMatchers("/login","/registration","/goal", "/images/**", "/css/**", "/js/**", "/WEB-INF/**").permitAll()
+                .requestMatchers("/login","/testre", "/register","/goal", "/images/**", "/css/**", "/js/**", "/WEB-INF/**").permitAll()
                 .anyRequest().authenticated()
         )
         .httpBasic(withDefaults())
