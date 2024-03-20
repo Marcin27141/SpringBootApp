@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/index_styling.css">
     <script src="/js/index.js"></script>
 </head>
+<style>
+    .plank-back {
+        color: sandybrown;
+        padding: 10px;
+        width: 400px;
+        background-image: url(https://static.vecteezy.com/system/resources/previews/001/948/362/large_2x/brown-wood-plank-wall-for-background-free-photo.jpg);
+        margin-bottom: 5px;
+    }
+</style>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <!--Container for bird descirption and photo-->
@@ -18,13 +27,27 @@
              th:src="${bird.imageSrc}">
     </a>
     <div class="bird-description">
-        <h4>Latin name: <span th:text="${bird.latinName}"></span></h4>
-        <h4>Wingspan: <span th:text="${bird.wingspanCm}"></span></h4>
-        <h4>Diet: <span th:text="${bird.diet}"></span></h4>
-        <h4>Habitat: <span th:text="${bird.continents}"></span></h4>
-        <h4>Conservation status: <span th:text="${bird.conservationStatus}"></span></h4>
-        <h4>Dominant colors: <span th:text="${bird.colors}"></span></h4>
-        <p th:text="${bird.trivia}"></p>
+        <div class="plank-back">
+            <p><strong>Latin name: </strong><i th:text="${bird.latinName}"></i></p>
+        </div>
+        <div class="plank-back">
+            <p><strong>Wingspan: </strong><span th:text="${bird.wingspanCm}"></span></p>
+        </div>
+        <div class="plank-back">
+            <p><strong>Diet: </strong><span th:text="${bird.diet}"></span></p>
+        </div>
+        <div class="plank-back">
+            <p><strong>Continents: </strong><span th:text="${#strings.listJoin(bird.continents, ', ')}"></span></p>
+        </div>
+        <div class="plank-back">
+            <p><strong>Conservation status: </strong><span th:text="${bird.conservationStatus}"></span></p>
+        </div>
+        <div class="plank-back">
+            <p><strong>Colors: </strong><span th:text="${#strings.listJoin(bird.colors, ', ')}"></span></p>
+        </div>
+        <div class="plank-back">
+            <p th:text="${bird.trivia}"></p>
+        </div>
     </div>
 </div>
 </body>

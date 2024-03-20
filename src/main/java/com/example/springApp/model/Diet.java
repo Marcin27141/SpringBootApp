@@ -4,5 +4,23 @@ public enum Diet {
     HERBIVORES,
     CARNIVOROUS,
     SCAVENGER,
-    OMNIVORES
+    OMNIVORES;
+
+    public String getName() {
+        switch (this) {
+            case HERBIVORES -> {
+                return "Herbivores";
+            }
+            case CARNIVOROUS -> {
+                return "Carnivorous";
+            }
+            case SCAVENGER -> {
+                return "Scavenger";
+            }
+            case OMNIVORES -> {
+                return "Omnivores";
+            }
+        }
+        return "Unknown";
+    }
 }

@@ -1,9 +1,6 @@
 package com.example.springApp.api;
 
-import com.example.springApp.model.Bird;
-import com.example.springApp.model.ConservationStatus;
-import com.example.springApp.model.Continent;
-import com.example.springApp.model.Diet;
+import com.example.springApp.model.*;
 import com.example.springApp.propertyEditors.ConservationPropertyEditor;
 import com.example.springApp.propertyEditors.ContinentPropertyEditor;
 import com.example.springApp.propertyEditors.DietPropertyEditor;
@@ -73,7 +70,8 @@ public class BirdController {
         var bird = birdService.getBirdById(id);
         if (bird.isEmpty())
             return "redirect:/notfound";
-        model.addAttribute("bird", bird.get());
+        DisplayBird displayBird = new DisplayBird(bird.get());
+        model.addAttribute("bird", displayBird);
         return "show_bird";
     }
 

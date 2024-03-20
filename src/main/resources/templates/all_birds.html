@@ -10,11 +10,6 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="main-container" id="main-container">
-    <div class="header">
-        <h1 class="welcome-message">Most interesting birds out there</h1>
-        <h6 class="clarification-message">(In my humble opinion)</h6>
-    </div>
-
     <div class="bird-cards">
         <div th:each="bird : ${birds}">
             <a th:href="@{'/' + ${bird.id}}" style="text-decoration: none; color: inherit; text-transform: none">
