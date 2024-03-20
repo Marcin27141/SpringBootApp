@@ -2,6 +2,7 @@ package com.example.springApp.service;
 
 import com.example.springApp.dao.postgres.jpa.UserRepository;
 import com.example.springApp.exceptions.EmailTakenException;
+import com.example.springApp.exceptions.PasswordsNotEqualException;
 import com.example.springApp.exceptions.UsernameTakenException;
 import com.example.springApp.model.RegistrationUser;
 import com.example.springApp.model.User;
@@ -23,12 +24,15 @@ public class RegistrationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(RegistrationUser registrationUser) throws EmailTakenException, UsernameTakenException {
+    public void register(RegistrationUser registrationUser) throws EmailTakenException, UsernameTakenException, PasswordsNotEqualException {
         if(checkIfEmailTaken(registrationUser.getEmail())){
             throw new EmailTakenException("User already exists for this email");
         }
         if(checkIfUsernameTaken(registrationUser.getUsername())){
             throw new UsernameTakenException("User already exists for this username");
+        }
+        if(!registrationUser.getPassword().equals(registrationUser.getConfirmPassword())){
+            throw new PasswordsNotEqualException("Both passwords must be the same");
         }
         User newUser = new User();
         BeanUtils.copyProperties(registrationUser, newUser);

@@ -12,25 +12,25 @@
         <div class="form-container log-in-container">
             <form name="f" th:action="@{/login}" method="post">
                 <h1>Log in</h1>
-                <input type="text" placeholder="Username" id="username" name="username">
-                <input type="password" placeholder="Password" id="password" name="password">
+                <input type="text" placeholder="Username" id="username" name="username" required="required">
+                <input type="password" placeholder="Password" id="password" name="password" required="required">
+                <div class="alert" th:if="${loginFailed}" th:text="${loginFailed}"></div>
                 <a href="#">Forgot your password?</a>
                 <button type="submit">Log in</button>
+                <div th:if="${registrationSuccessful}" th:text="${registrationSuccessful}"></div>
+                <div class="alert" th:if="${registrationFailed}" th:text="${registrationFailed}"></div>
+                <div class="alert" th:if="${registrationError}" th:text="${registrationError}"></div>
             </form>
         </div>
         <div class="form-container sign-up-container">
             <form method="post" th:action="@{/register}" th:object="${registrationUser}">
                 <h1>Sign up</h1>
-                <input type="email" placeholder="Email" name="email" th:field="*{email}">
-                <input type="text" placeholder="Username" name="username" th:field="*{username}">
-                <input type="password" placeholder="Password" name="password" th:field="*{password}">
-                <input type="password" placeholder="Confirm password" name="confirmPassword" th:field="*{confirmPassword}">
+                <input type="email" placeholder="Email" name="email" th:field="*{email}" required="required">
+                <input type="text" placeholder="Username" name="username" th:field="*{username}" required="required">
+                <input type="password" placeholder="Password" name="password" th:field="*{password}" required="required">
+                <input type="password" placeholder="Confirm password" name="confirmPassword" th:field="*{confirmPassword}" required="required">
                 <button type="submit">Sign up</button>
             </form>
-<!--            <form method="post" th:action="@{/testre}">-->
-<!--                <h1>Test</h1>-->
-<!--                <button type="submit">test</button>-->
-<!--            </form>-->
         </div>
         <div class="toggle-container">
             <div class="toggle">

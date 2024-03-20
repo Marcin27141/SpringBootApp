@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                 .loginPage("/login")
                 .permitAll()
                     .defaultSuccessUrl("/", true)
+                    .failureUrl("/login-error")
         )
         .logout(LogoutConfigurer::permitAll);
         return http.build();

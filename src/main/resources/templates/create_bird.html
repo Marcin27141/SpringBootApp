@@ -18,9 +18,12 @@
         <label>Latin name:</label>
         <input type="text" th:field="*{latinName}" required="required"/>
 
-        <label>Wingspan in cm:</label>
-        <input type="number" th:field="*{wingspanCm}" required="required"/>
-        <div th:if="${#fields.hasErrors('wingspanCm')}" th:errors="*{wingspanCm}"></div>
+        <div class="wingspan-div">
+            <label>Wingspan in cm:</label>
+            <input type="number" th:field="*{wingspanCm}" required="required"/>
+            <div th:if="${#fields.hasErrors('wingspanCm')}" th:errors="*{wingspanCm}"></div>
+        </div>
+
 
         <div class="extinction-div">
             <label>Conservation status:</label>

@@ -153,3 +153,10 @@ input[type="checkbox"] {
     margin-top: 20px;
     margin-bottom: 2px;
 }
+
+.wingspan-div input {
+    margin-bottom: 5px;
+}
+.wingspan-div {
+    margin-bottom: 40px;
+}
